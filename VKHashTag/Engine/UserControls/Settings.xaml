@@ -1,0 +1,234 @@
+﻿<UserControl x:Class="VKHashTag.Engine.UserControls.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VKHashTag"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:VKHashTag.Engine.Converters"
+             IsVisibleChanged="Settings_IsVisibleChanged"
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
+
+
+    <Grid DataContext="{x:Static local:db.user}" >
+        <StackPanel Orientation="Vertical" Margin="50,0,50,0">
+            <StackPanel.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                    <converters:ActualMarginConv x:Key="ActualMarginConv"/>
+                    <converters:MatchConv x:Key="MatchConv"/>
+                </ResourceDictionary>
+            </StackPanel.Resources>
+
+            
+            <TabControl x:Name="TB_LoginToken" VerticalAlignment="Top">
+                <Controls:MetroTabItem Header="Указать логин и пароль">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="13,0,0,0" Height="26" VerticalAlignment="Top">
+                            <TextBox Controls:TextboxHelper.ClearTextButton="True"
+                                     Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                     Controls:TextboxHelper.Watermark="+380671541689" 
+                                     Text="{Binding login, UpdateSourceTrigger=PropertyChanged}"
+                                     MinWidth="140" MaxWidth="200"/>
+                            
+                            <TextBox Controls:TextboxHelper.ClearTextButton="True"
+                                     Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                     Controls:TextboxHelper.Watermark="passwd" 
+                                     Text="{Binding passwd, UpdateSourceTrigger=PropertyChanged}"
+                                     MinWidth="140" MaxWidth="420" Margin="15,0,0,0" />
+                        </StackPanel>
+                        
+                        
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=TB_LoginToken, Path=SelectedIndex}"  Value="0">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="87" Duration="0:0:0.2"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            
+                         <TabControl Margin="0,15,0,0" VerticalAlignment="Top">
+                            <Controls:MetroTabItem Header="Использовать приложение VK">
+                                <Grid Margin="13,0,0,0" Height="26">
+                                    <ComboBox x:Name="CB_idAPP_VK" 
+                                              MinWidth="175" 
+                                              MaxWidth="200" 
+                                              HorizontalAlignment="Left" 
+                                              SelectedIndex="1">
+                                        <ComboBoxItem Content="iPad - 3682744" />
+                                        <ComboBoxItem Content="iPhone - 3087106" />
+                                        <ComboBoxItem Content="Android - 2890984" />
+                                        <ComboBoxItem Content="Windows Phone - 3502561" />
+                                    </ComboBox>
+                                    
+                                        <TextBox x:Name="TB_ScoreVK" Controls:TextboxHelper.ClearTextButton="True"
+                                                 Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                                 Controls:TextboxHelper.Watermark="all"
+                                                 Text="{Binding scope, UpdateSourceTrigger=PropertyChanged}"
+                                                 Margin="{Binding ElementName=CB_idAPP_VK, Path=ActualWidth, Converter={StaticResource ActualMarginConv}, ConverterParameter='+15,0,0,0'}" />
+                                    </Grid>
+                            </Controls:MetroTabItem>
+                             
+                             
+                            <Controls:MetroTabItem Header="Использовать свое приложение">
+                                <Grid Margin="13,0,0,0" Height="26">
+                                    <TextBox Controls:TextboxHelper.ClearTextButton="True"
+                                             Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                             Controls:TextboxHelper.Watermark="Укажите ID приложения"
+                                             Width="{Binding ElementName=CB_idAPP_VK, Path=ActualWidth}" 
+                                             Text="{Binding UserVK_APP, UpdateSourceTrigger=PropertyChanged}"
+                                             HorizontalAlignment="Left"/>
+                                    
+                                    <TextBox Controls:TextboxHelper.ClearTextButton="True"
+                                             Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                             Controls:TextboxHelper.Watermark="all" 
+                                             Text="{Binding ElementName=TB_ScoreVK, Path=Text, UpdateSourceTrigger=PropertyChanged}"
+                                             Margin="{Binding ElementName=TB_ScoreVK, Path=Margin}"/>
+                                </Grid>
+                            </Controls:MetroTabItem>
+                          </TabControl>
+                        </Grid>
+                    </StackPanel>
+                </Controls:MetroTabItem>
+                
+                
+                <Controls:MetroTabItem Header="Указать token">
+                    <Grid>
+                        <Grid.Style>
+                            <Style TargetType="{x:Type Grid}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=TB_LoginToken, Path=SelectedIndex}"  Value="1">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Height" From="110" To="26" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        
+                        <TextBox Controls:TextboxHelper.ClearTextButton="True"
+                                 Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                 Controls:TextboxHelper.Watermark="82c3f00fc1dec5c2d6098c132с93427d60b49b27b2b0283c5618d37e63afc30797446ccb226d00d0888d8"
+                                 Text="{Binding token, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Left"
+                                 MinWidth="580" 
+                                 Margin="13,0,0,0" 
+                                 Height="26"/>
+                        </Grid>
+                </Controls:MetroTabItem>
+            </TabControl>
+
+            
+            
+            
+            
+            <StackPanel Margin="10,25,0,0" 
+                        Orientation="Vertical" 
+                        HorizontalAlignment="Left">
+                <Label Content="Дополнительные настройки" 
+                       Style="{DynamicResource DescriptionHeaderStyle}" 
+                       HorizontalAlignment="Left"
+                       Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}" />
+
+                <CheckBox x:Name="CB_Antigate" 
+                          Content="Использовать antigate.com ?" 
+                          FontSize="15" Margin="5,4,0,0" 
+                          IsChecked="{Binding UsingAntigate, UpdateSourceTrigger=PropertyChanged}"
+                          Foreground="{DynamicResource AccentColorBrush}"/>
+                
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CB_Antigate, Path=IsChecked}"  Value="False">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.2"/>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="36" To="0" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="36" Duration="0:0:0.2"/>
+                                                <ThicknessAnimation From="20,0,0,0" To="0" Duration="0:0:0.2" Storyboard.TargetProperty="Margin"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    
+                    <TextBox Controls:TextboxHelper.ClearTextButton="True"
+                             Controls:TextboxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                             Controls:TextboxHelper.Watermark="key antigate" 
+                             Text="{Binding KeyAntigate, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="270" MaxWidth="300" Margin="5,10,0,0" Height="26" HorizontalAlignment="Left" >
+                    </TextBox>
+                </Grid>
+
+
+                <StackPanel DataContext="{x:Static local:db.conf}"
+                            Orientation="Horizontal" 
+                            Margin="0,10,0,0" 
+                            HorizontalAlignment="Left" >
+                    <Label Content="Пауза между запросами, от " 
+                           FontSize="22" 
+                           Style="{DynamicResource DescriptionHeaderStyle}" 
+                           Foreground="{DynamicResource AccentColorBrush}"/>
+                    
+                    <Controls:NumericUpDown Minimum="100" 
+                                            Value="{Binding SleepMin, UpdateSourceTrigger=PropertyChanged}" 
+                                            Interval="50" 
+                                            StringFormat=" {0:N0} ms."
+                                            IsReadOnly="True"
+                                            Maximum="{Binding ElementName=NU_SleepMax, Path=Value, Converter={StaticResource MatchConv}, ConverterParameter='DoubleInt: value - 50'}"/>
+                    
+                    <Label Content=" до " 
+                           FontSize="22" 
+                           Style="{DynamicResource DescriptionHeaderStyle}" 
+                           Foreground="{DynamicResource AccentColorBrush}"/>
+                    
+                    <Controls:NumericUpDown x:Name="NU_SleepMax" 
+                                            Minimum="150" 
+                                            Value="500" 
+                                            Interval="50" 
+                                            IsReadOnly="True"
+                                            StringFormat=" {0:N0} ms." />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        
+        
+        <StackPanel Margin="63,0,0,30" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Bottom">
+            <Button Content="Save" Width="100" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}" Click="SaveClick"/>
+            
+            <Button Content="Close" Margin="15,0,0,0" Width="100" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}" Click="CloseClick"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

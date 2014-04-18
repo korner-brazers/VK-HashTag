@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls"
+                    xmlns:Dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs"
+                    xmlns:conv="clr-namespace:MahApps.Metro.Converters">
+
+    
+    <Storyboard x:Key="DialogShownStoryboard">
+        <DoubleAnimation To="1" BeginTime="0:0:0" Duration="0:0:0.2" AccelerationRatio=".9" Storyboard.TargetProperty="Opacity" />
+    </Storyboard>
+    <Storyboard x:Key="DialogCloseStoryboard">
+        <DoubleAnimation To="0" BeginTime="0:0:0" Duration="0:0:0.2" AccelerationRatio=".9" Storyboard.TargetProperty="Opacity" />
+    </Storyboard>
+
+    <ControlTemplate TargetType="{x:Type Dialogs:WaitBaseMetroDialog}" x:Key="MetroDialogTemplate">
+        <Grid Background="{x:Null}">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-80,0,0">
+                <TextBlock FontSize="26" Text="{TemplateBinding Title}" TextWrapping="Wrap" Foreground="{TemplateBinding Foreground}" FontWeight="Light" />
+                <ContentPresenter x:Name="PART_DialogBody_ContentPresenter"  Content="{TemplateBinding DialogBody}"/>
+            </Grid>
+
+            <ContentPresenter Content="{TemplateBinding DialogBottom}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard Storyboard="{StaticResource DialogShownStoryboard}" />
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type Dialogs:WaitBaseMetroDialog}">
+        <Setter Property="Template" Value="{StaticResource MetroDialogTemplate}" />
+        <Setter Property="Background" Value="{DynamicResource WhiteColorBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Cycle" />
+        <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Cycle" />
+        <Setter Property="Opacity" Value="0" />
+    </Style>
+</ResourceDictionary>

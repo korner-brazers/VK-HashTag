@@ -1,0 +1,199 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    x:Class="VKHashTag.Engine.Style.MainVK.Generic.JobStyle">
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Engine/Style/all.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Canvas Width="48" Height="48" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False" x:Key="CanvasArrowsRigt">
+        <Path Width="13" Height="21" Canvas.Left="19" Canvas.Top="13" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 19,14L 31.9999,23.7501L 31.9999,24.5001L 19,34L 19,14 Z " />
+    </Canvas>
+
+    <Canvas Width="48" Height="48" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False" x:Key="CanvasArrowsLeft">
+        <Path Width="13" Height="21" Canvas.Left="19" Canvas.Top="13" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 19,14L 31.9999,23.7501L 31.9999,24.5001L 19,34L 19,14 Z " >
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+    </Canvas>
+
+
+    <Canvas Width="13" Height="15" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" x:Key="CanvasDataBase" >
+        <Path Width="13" Height="15" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 24,12C 30.0751,12 35,13.3431 35,15C 35,15.7684 33.9409,16.4692 32.1991,17C 30.1849,17.6138 27.2578,18 24,18C 20.7422,18 17.8151,17.6138 15.8009,17C 14.0591,16.4692 13,15.7684 13,15C 13,13.3431 17.9249,12 24,12 Z M 35,33C 35,34.6569 30.0751,36 24,36C 17.9249,36 13,34.6569 13,33L 13,29C 13,30.6569 17.9249,32 24,32C 30.0751,32 35,30.6569 35,29L 35,33 Z M 35,27C 35,28.6569 30.0751,30 24,30C 17.9249,30 13,28.6569 13,27L 13,23C 13,24.6569 17.9249,26 24,26C 30.0751,26 35,24.6569 35,23L 35,27 Z M 35,21C 35,22.6569 30.0751,24 24,24C 17.9249,24 13,22.6569 13,21L 13,17C 13,18.6569 17.9249,20 24,20C 30.0751,20 35,18.6569 35,17L 35,21 Z " />
+    </Canvas>
+
+    <Canvas Width="9" Height="15" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" x:Key="CanvasStart">
+        <Path Width="9" Height="15" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 19,14L 31.9999,23.7501L 31.9999,24.5001L 19,34L 19,14 Z " />
+    </Canvas>
+
+    <Canvas Width="11" Height="15" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False" x:Key="CanvasPause">
+        <Path Width="11" Height="15" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 17,15L 21,15L 21,33L 17,33L 17,15 Z M 27,15L 31,15L 31,33L 27,33L 27,15 Z " />
+    </Canvas>
+
+    <Canvas Width="15" Height="15" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False" x:Key="CanvasEdit">
+        <Path Width="15" Height="15" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 30,19L 35.5,19L 30,13.5L 30,19 Z M 36,21L 30,21L 28,21L 28,13L 18,13L 18,18.5L 16,16.5L 16,11L 30.5,11L 38,18.5L 38,37L 16,37L 16,27.5L 18,29.5L 18,35L 36,35L 36,21 Z M 15.5,18L 25,27.5L 21.5,31L 12,21.5L 15.5,18 Z M 11.25,20.75L 9.25,19.1457C 8.60863,18.5043 8.85863,17.1414 9.5,16.5L 10.5,15.5C 11.1414,14.8587 12.3586,14.6086 13,15.25L 14.75,17.25L 11.25,20.75 Z M 26.5083,33L 22.25,31.75L 25.75,28.25L 26.9189,32.5894L 26.5083,33 Z " />
+    </Canvas>
+
+    <Canvas Width="15" Height="15" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" x:Key="CanvasDelete">
+        <Path Width="15" Height="15" Stretch="Fill" Fill="{DynamicResource HighlightBrush}" Data="F1 M 17,14L 24,21L 30.9999,14.0001L 33.9999,17.0001L 27,24L 33.9999,31L 31,34L 24,27L 17,34L 14,31L 21,24L 14,17L 17,14 Z " />
+    </Canvas>
+
+
+    <Style TargetType="Rectangle" x:Key="RectangleArrowsStyle">
+        <Setter Property="Width" Value="6"/>
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Opacity" Value="0.32"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="Rectangle" x:Key="RectangleIconStyle">
+        <Setter Property="Height" Value="15"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Opacity" Value="0.30"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    
+    
+    
+    
+    
+    
+
+
+    <Style x:Key="JobStyle" TargetType="ListBoxItem">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid Height="85">
+                        <Grid Height="75" VerticalAlignment="Bottom">
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <CheckBox IsChecked="{Binding Activ, UpdateSourceTrigger=PropertyChanged}"
+                                          VerticalAlignment="Top"
+                                          Cursor="Hand"
+                                          Margin="0,10,0,0"
+                                          Height="18"
+                                          Width="18"/>
+
+
+                                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                                    <Label Content="{Binding Name}"
+                                           FontSize="26" 
+                                           Style="{StaticResource LabelTextBlue}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding StringType}"
+                                               ContentStringFormat="Тип задания: {0}"
+                                               FontSize="18" 
+                                               Style="{StaticResource LabelTextBlack}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                <Rectangle Tag="{Binding id}" 
+                                           MouseDown="RectangleStart_MouseDown">
+                                    <Rectangle.Style>
+                                        <Style TargetType="Rectangle" BasedOn="{StaticResource RectangleIconStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Work}" Value="True">
+                                                    <Setter Property="Fill">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="Uniform" Visual="{StaticResource CanvasPause}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="Width" Value="11"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Work}" Value="False">
+                                                    <Setter Property="Fill">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="Uniform" Visual="{StaticResource CanvasStart}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="Width" Value="9"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Rectangle.Style>
+                                </Rectangle>
+
+                                <Rectangle ToolTip="Отчеты"
+                                           Tag="{Binding id}" 
+                                           MouseDown="RectangleReport_MouseDown">
+                                    <Rectangle.Style>
+                                        <Style TargetType="Rectangle" BasedOn="{StaticResource RectangleIconStyle}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Setter Property="Width" Value="13"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Reply}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Rectangle.Style>
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Uniform" Visual="{StaticResource CanvasDataBase}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <Rectangle Style="{StaticResource RectangleIconStyle}"
+                                           Width="15"
+                                           Tag="{Binding id}"
+                                           MouseDown="RectangleEdit_MouseDown">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Uniform" Visual="{StaticResource CanvasEdit}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <Rectangle Style="{StaticResource RectangleIconStyle}"
+                                           Width="15"
+                                           Tag="{Binding id}"
+                                           MouseDown="RectangleDelete_MouseDown">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Uniform" Visual="{StaticResource CanvasDelete}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </StackPanel>
+
+
+                            <Label Content="{Binding InformationJob}"
+                                   FontSize="11" 
+                                   Opacity="0.5"
+                                   Margin="0,0,0,7"
+                                   Style="{StaticResource LabelTextBlack}" 
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Bottom"/>
+                            
+
+                            <Grid Height="1" ClipToBounds="True" VerticalAlignment="Bottom" >
+                                <ProgressBar Value="{Binding ProgressBarValue}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

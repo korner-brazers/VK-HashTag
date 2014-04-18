@@ -1,0 +1,7 @@
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\vkAPI\bin\Debug\vkAPI.dll
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\vkAPI\bin\Debug\vkAPI.pdb
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\vkAPI\obj\Debug\vkAPI.csprojResolveAssemblyReference.cache
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\vkAPI\obj\Debug\vkAPI.dll
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\vkAPI\obj\Debug\vkAPI.pdb
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\VKHashTag\bin\Debug\vkAPI.dll
+C:\Users\Алексей\Documents\Visual Studio 2013\Projects\VKHashTag\VKHashTag\bin\Debug\vkAPI.pdb

@@ -1,0 +1,162 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="VKHashTag.Engine.Style.JobADD_HashTag.Generic.JobStyle"
+                    xmlns:converters="clr-namespace:VKHashTag.Engine.Converters"
+                    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls">
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Engine/Style/all.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:StringFormatConv x:Key="StringFormatConv"/>
+    
+    <Canvas Width="20" Height="15" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" UseLayoutRounding="False" x:Key="CanvasChek">
+        <Path Width="20" Height="15" Stretch="Fill" Fill="{DynamicResource WhiteBrush}" Data="F1 M 15,21L 22,28L 32.9999,14.0001L 35.9999,17.0001L 22,34L 12.0001,24L 15,21 Z " />
+    </Canvas>
+    
+    
+
+    
+    <Style x:Key="AddJobStyle" TargetType="ListBoxItem">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="0.80" />
+        <Setter Property="Margin" Value="30,0,0,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid Height="60" Background="{DynamicResource HighlightBrush}">
+                        <Grid Name="gridItem" 
+                              Background="{x:Null}" 
+                              Opacity="0.1"
+                              Height="48" 
+                              HorizontalAlignment="Stretch" 
+                              VerticalAlignment="Center"/>
+                        
+                        
+          
+                        
+                        <StackPanel Orientation="Horizontal" 
+                                    Height="45" 
+                                    Margin="4,0,0,0"
+                                    HorizontalAlignment="Stretch" 
+                                    VerticalAlignment="Center">
+
+                            <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="40">
+                                <Controls:ProgressRing IsActive="{Binding ElementName=ImageGroup, Path=Source, Converter={StaticResource NullBoolConv}}" 
+                                                       Height="20" Width="20" />
+                                
+                                <Label x:Name="GroupID" Visibility="Collapsed" Tag="{Binding gid}"/>
+                                <Image x:Name="ImageGroup" 
+                                       DataContext="{Binding photo, Converter={converters:DownloadImageTaskAsyncConv}}"
+                                       Source="{Binding Path=Result}"
+                                       Tag="{Binding ElementName=GroupID, Path=Tag}"
+                                       MouseDown="PutUserIDhttp_MouseDown"
+                                       Cursor="Hand">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=ImageGroup, Path=Source, Converter={StaticResource NullBoolConv}}" Value="False">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="40" Duration="0:0:0.2"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="40" Duration="0:0:0.2"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.4"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                    <DataTrigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Height" From="40" To="0" Duration="0:0:0.1"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="40" To="0" Duration="0:0:0.1"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.1"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
+
+
+                            <StackPanel Margin="10,-4,0,0" Orientation="Vertical">
+                                <Label Content="{Binding name}" 
+                                       FontSize="19"
+                                       Style="{StaticResource LabelTextWhite}"/>
+                                
+                                <Label Content="{Binding members_count, Converter={StaticResource StringFormatConv}, ConverterParameter='value подписчи(к,ка,ков)'}" 
+                                       FontSize="16"
+                                       Style="{StaticResource LabelTextBlue}"
+                                       Foreground="{DynamicResource GrayHoverBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                        
+
+
+                        <Rectangle x:Name="RectangleChek"
+                                   Margin="0,0,20,0"
+                                   Width="20" Height="15" 
+                                   Visibility="Collapsed"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Uniform" Visual="{StaticResource CanvasChek}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Margin" Value="30,0,0,0">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation From="30,0,0,0" To="15,0,0,0" Duration="0:0:0.1" Storyboard.TargetProperty="Margin"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.80" To="0.85" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+
+                        <Trigger Property="Margin" Value="15,0,0,0">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation From="15,0,0,0" To="5,0,0,0" Duration="0:0:0.2" Storyboard.TargetProperty="Margin"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.85" To="0.95" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+
+                        <Trigger Property="Margin" Value="5,0,0,0">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation From="5,0,0,0" To="0" Duration="0:0:0.3" Storyboard.TargetProperty="Margin"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.95" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="gridItem" Property="Background" Value="{DynamicResource WhiteBrush}" />
+                            <Setter TargetName="RectangleChek" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="gridItem" Property="Background" Value="{DynamicResource WhiteBrush}" />
+                            <Setter TargetName="gridItem" Property="Opacity" Value="0.04" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+</ResourceDictionary>

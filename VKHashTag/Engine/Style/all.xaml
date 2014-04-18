@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:VKHashTag.Engine.Converters">
+
+
+    <converters:NullBoolConv x:Key="NullBoolConv"/>
+    <converters:DoubleVisibilityConv x:Key="DoubleVisibilityConv"/>
+    <converters:IntVisibilityConv x:Key="IntVisibilityConv"/>
+    
+    
+    <Style TargetType="Label" x:Key="LabelTextBlue">
+        <Setter Property="Foreground" Value="{DynamicResource HighlightBrush}"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelTextBlack" BasedOn="{StaticResource LabelTextBlue}">
+        <Setter Property="Foreground" Value="{DynamicResource BlackBrush}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelTextWhite" BasedOn="{StaticResource LabelTextBlue}">
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}"/>
+    </Style>
+
+</ResourceDictionary>
