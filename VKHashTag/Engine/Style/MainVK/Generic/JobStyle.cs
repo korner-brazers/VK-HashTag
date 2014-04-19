@@ -1,4 +1,6 @@
 ﻿using System;
+using ZLibNet;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -88,15 +90,40 @@ namespace VKHashTag.Engine.Style.MainVK.Generic
                             }
                             else
                             {
-                                MessageBOX.Show("Данные успешно скопированы в буфер обмена");
-                                StringBuilder tag = new StringBuilder();
-                                foreach(string s in job.HashTag.ToArray())
-                                {
-                                    tag.Append(s + Environment.NewLine);
-                                }
+                                Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
+                                sfd.Title = "Укажите путь, куда сохранить архив";
+                                sfd.FileName = "archive";
+                                sfd.DefaultExt = ".zip"; 
+                                sfd.Filter = "archive|*.zip";
 
-                                Clipboard.SetText(tag.ToString());
-                                tag = null;
+                                //Сохраняем архив
+                                if ((bool)sfd.ShowDialog() == true)
+                                {
+                                    MessageBOX.Show("Данные успешно сохранены");
+                                    Directory.CreateDirectory("tmp");
+
+                                    //Сохраняем теги
+                                    File.WriteAllLines(@"tmp\tag.txt", job.HashTag.ToArray());
+
+                                    //Сохраняем список групп
+                                    foreach (var g in job.Group.ToArray())
+                                    {
+                                        File.AppendAllText(@"tmp\group.txt", ("https://vk.com/public" + g.gid.ToString().Replace("-", "") + Environment.NewLine));
+                                    }
+
+                                    //Пакуем в архив
+                                    Zipper zip = new Zipper();
+                                    zip.ZipFile = sfd.FileName;
+                                    zip.ItemList.Add(@"tmp\" + "*.*");
+                                    zip.Recurse = true;
+                                    zip.Comment = "VKHashTag - feedron.ru";
+                                    zip.Zip();
+
+                                    //Удаляем темп
+                                    Directory.Delete("tmp", true);
+                                    zip = null;
+                                }
+                                sfd = null;
                             }
                             job = null;
                             break;

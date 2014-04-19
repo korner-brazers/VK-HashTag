@@ -89,13 +89,19 @@ namespace VKHashTag
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////#############                             Ссылка на GitHub проект и выбор табКонтрола                            #############/////
+        /////#############                      Ссылка на GitHub проект, выбор табКонтрола и переход на оф сайт               #############/////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void LaunchOnGitHub(object sender, RoutedEventArgs e)
         {
             sender = null; e = null;
             System.Diagnostics.Process.Start("https://github.com/korner-brazers/VK-HashTag");
+        }
+
+        private void TB_StatusBar_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            sender = null; e = null;
+            System.Diagnostics.Process.Start("http://feedron.ru/");
         }
 
         public async void AnimatedTabControlIndex(int index)

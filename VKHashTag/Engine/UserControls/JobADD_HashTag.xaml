@@ -22,7 +22,17 @@
             <Canvas Width="16" Height="19" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" x:Key="Canvas_StopWordDelete">
                 <Path Width="16" Height="19" Stretch="Fill"  Fill="{DynamicResource GrayNormalBrush}" Data="F1 M 16,15L 32,15C 32.5523,15 32.75,17.25 32.75,17.25L 15.25,17.25C 15.25,17.25 15.4477,15 16,15 Z M 22.5,12.5L 25.5,12.5C 25.7761,12.5 26.5,13.2239 26.5,13.5C 26.5,13.7762 25.7761,14.5 25.5,14.5L 22.5,14.5C 22.2238,14.5 21.5,13.7762 21.5,13.5C 21.5,13.2239 22.2238,12.5 22.5,12.5 Z M 17.5,18L 30.5,18C 31.0523,18 31.5,18.4477 31.5,19L 30.5,34C 30.5,34.5523 30.0523,35 29.5,35L 18.5,35C 17.9477,35 17.5,34.5523 17.5,34L 16.5,19C 16.5,18.4477 16.9477,18 17.5,18 Z M 19,20L 19.25,33L 21,33L 20.75,20L 19,20 Z M 23,20L 23,33L 25,33L 25,20L 23,20 Z M 27.25,20L 27,33L 28.75,33L 29,20L 27.25,20 Z " Canvas.Left="0.099" />
             </Canvas>
-            
+
+            <Canvas Width="18" Height="18" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" x:Key="Canvas_SearchBackWhite">
+                <Path Width="10" Height="7" Canvas.Left="4.333" Canvas.Top="5.5" Stretch="Fill" Fill="{DynamicResource WhiteBrush}" Data="F1 M 36,22L 36,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 36,22 Z " />
+                <Path Width="18" Height="18" Canvas.Left="0.499997" Canvas.Top="0.5" Stretch="Fill" Fill="{DynamicResource WhiteBrush}"  Data="F1 M 24,0.5C 36.9787,0.5 47.5,11.0213 47.5,24C 47.5,36.9787 36.9787,47.5 24,47.5C 11.0213,47.5 0.499997,36.9787 0.499997,24C 0.499997,11.0213 11.0213,0.5 24,0.5 Z M 24,3.5C 12.6782,3.5 3.5,12.6782 3.5,24C 3.5,35.3218 12.6782,44.5 24,44.5C 35.3218,44.5 44.5,35.3218 44.5,24C 44.5,12.6782 35.3218,3.5 24,3.5 Z " />
+            </Canvas>
+
+            <Canvas Width="18" Height="18" Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0" x:Key="Canvas_SearchBackGray">
+                <Path Width="10" Height="7" Canvas.Left="4.333" Canvas.Top="5.5" Stretch="Fill" Fill="{DynamicResource GrayHoverBrush}" Data="F1 M 36,22L 36,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 36,22 Z " />
+                <Path Width="18" Height="18" Canvas.Left="0.499997" Canvas.Top="0.5" Stretch="Fill" Fill="{DynamicResource GrayHoverBrush}"  Data="F1 M 24,0.5C 36.9787,0.5 47.5,11.0213 47.5,24C 47.5,36.9787 36.9787,47.5 24,47.5C 11.0213,47.5 0.499997,36.9787 0.499997,24C 0.499997,11.0213 11.0213,0.5 24,0.5 Z M 24,3.5C 12.6782,3.5 3.5,12.6782 3.5,24C 3.5,35.3218 12.6782,44.5 24,44.5C 35.3218,44.5 44.5,35.3218 44.5,24C 44.5,12.6782 35.3218,3.5 24,3.5 Z " />
+            </Canvas>
+
             <MainVKGeneriConverter:HeightListBox x:Key="MainVKGeneriConverter"/>
             <converters:StringFormatConv x:Key="StringFormatConv"/>
         </ResourceDictionary>
@@ -295,7 +305,43 @@
                 
                 
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Найти группы" MouseDown="LB_Search_MouseDown"/>
+                    <Rectangle Width="18" Height="18" 
+                               Margin="30,7,-15,0"
+                               Cursor="Hand"
+                               ToolTip="Вернуть предыдущий результат поиска"
+                               VerticalAlignment="Center" 
+                               MouseDown="RectangleSearchBack_MouseDown">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <VisualBrush Stretch="Uniform" Visual="{StaticResource Canvas_SearchBackWhite}" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <VisualBrush Stretch="Uniform" Visual="{StaticResource Canvas_SearchBackGray}" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+
+                                    <DataTrigger Binding="{Binding IsSearch}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding LastSearchResult.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                    
+                    <Label Content="Найти группы" MouseDown="LB_Search_MouseDown" />
                     <Label Content="Очистить результат" MouseDown="LB_Clear_MouseDown"/>
                 </StackPanel>
 

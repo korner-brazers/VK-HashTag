@@ -35,6 +35,7 @@ namespace VKHashTag.Engine.UserControls
         private void Clear()
         {
             job.StopWord.Clear(); job.StopWord = null;
+            job.LastSearchResult = null;
             job.SearchResult = null;
             job.SearchWord = "";
             job.NameJob = "";
@@ -224,6 +225,7 @@ namespace VKHashTag.Engine.UserControls
         private async void LB_Search_MouseDown(object sender, MouseButtonEventArgs e)
         {
             sender = null; e = null; job.IsSearch = true;
+            job.LastSearchResult = new ObservableCollection<vkAPI.InfoClass.other.Group>(job.SearchResult.ToList());
             vkAPI.InfoClass.groups.Search Search = new vkAPI.InfoClass.groups.Search();
 
             //Выбираем тип групп для поиска
@@ -271,7 +273,7 @@ namespace VKHashTag.Engine.UserControls
 
         private void LB_Clear_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            job.SearchResult = null; sender = null; e = null;
+            sender = null; e = null; job.SearchResult = null; job.LastSearchResult = null;
             LabelSelectedALL.Content = "Выделить все";
             LB_Select = false;
         }
@@ -343,6 +345,17 @@ namespace VKHashTag.Engine.UserControls
 
 
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////#############                                  Возврат преведущих результатов поиска                             #############/////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void RectangleSearchBack_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            sender = null; e = null;
+            job.SearchResult = new ObservableCollection<vkAPI.InfoClass.other.Group>(job.LastSearchResult.ToList());
+            job.LastSearchResult = null;
+        }
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////#############                                   Временная база для билдинга и т.д                                #############/////
@@ -368,6 +381,7 @@ namespace VKHashTag.Engine.UserControls
                 Cities = new vkAPI.InfoClass.database.getCities();
                 NameJob = "Задание " + VKHashTag.db.job.LastIndexID;
                 SearchResult = new ObservableCollection<vkAPI.InfoClass.other.Group> { };
+                LastSearchResult = new ObservableCollection<vkAPI.InfoClass.other.Group> { };
             }
 
 
@@ -383,6 +397,7 @@ namespace VKHashTag.Engine.UserControls
             private vkAPI.InfoClass.database.getCities _Cities { get; set; }
             private vkAPI.InfoClass.database.getCountries _Countries { get; set; }
             private ObservableCollection<vkAPI.InfoClass.other.Group> _SearchResult { get; set; }
+            private ObservableCollection<vkAPI.InfoClass.other.Group> _LastSearchResult { get; set; }
 
             public byte GroupSort { get; set; }
             public short GroupCount { get; set; }
@@ -509,6 +524,16 @@ namespace VKHashTag.Engine.UserControls
                 set
                 {
                     _SearchResult = (value == null ? (new ObservableCollection<vkAPI.InfoClass.other.Group> { }) : value);
+                    NotifyPropertyChanged();
+                }
+            }
+
+            public ObservableCollection<vkAPI.InfoClass.other.Group> LastSearchResult
+            {
+                get { return _LastSearchResult; }
+                set
+                {
+                    _LastSearchResult = (value == null ? (new ObservableCollection<vkAPI.InfoClass.other.Group> { }) : value);
                     NotifyPropertyChanged();
                 }
             }

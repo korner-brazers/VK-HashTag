@@ -221,7 +221,9 @@
             <TextBlock x:Name="TB_StatusBar" 
                        Margin="3,-1,0,0" 
                        Foreground="{DynamicResource IdealForegroundColorBrush}" 
-                       Text="Feedron.ru" />
+                       Text="Feedron.ru" 
+                       Cursor="Hand"
+                       MouseDown="TB_StatusBar_MouseDown" />
         </StatusBar>
     </Grid>
 </Controls:MetroWindow>

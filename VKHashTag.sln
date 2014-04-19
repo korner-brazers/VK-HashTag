@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vkAPI", "vkAPI\vkAPI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Metro.NET45", "MahApps.Metro\MahApps.Metro.NET45.csproj", "{942D11C4-29F5-46C4-8C14-4B976D56C637}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{ACFF3942-E3A6-4E33-BFA0-8FB42764EE4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{942D11C4-29F5-46C4-8C14-4B976D56C637}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{942D11C4-29F5-46C4-8C14-4B976D56C637}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{942D11C4-29F5-46C4-8C14-4B976D56C637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACFF3942-E3A6-4E33-BFA0-8FB42764EE4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFF3942-E3A6-4E33-BFA0-8FB42764EE4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFF3942-E3A6-4E33-BFA0-8FB42764EE4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFF3942-E3A6-4E33-BFA0-8FB42764EE4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
